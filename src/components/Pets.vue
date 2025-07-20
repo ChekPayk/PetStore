@@ -1,15 +1,14 @@
 <template>
   <div>
-    <!-- Врачи: {{ doctorList }} -->
-    <li v-for="item in petList">
-
-      <v-card :title="item.name" subtitle="Subtitle" text="...">
-        <v-card-actions>
-          <v-btn>Click me</v-btn>
-        </v-card-actions>
-      </v-card>
-    </li>
-
+    <div class="list-pets">
+      <div v-for="item in petList" class="card">
+        <v-card :title="item.name">
+          <v-card-actions>
+            <v-btn>Click me</v-btn>
+          </v-card-actions>
+        </v-card>
+      </div>
+    </div>
     <!-- <v-list :items="doctorList" item-title="fio" variant="outlined"
     >
 
@@ -41,3 +40,17 @@ onMounted(async () => {
   ).data;
 });
 </script>
+
+<style lang="scss" scoped>
+.list-pets {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card {
+  border: black;
+}
+
+</style>
