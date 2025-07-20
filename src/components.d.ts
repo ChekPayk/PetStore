@@ -9,8 +9,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
-    Registry: typeof import('./components/Registry.vue')['default']
+    Logo: typeof import('./components/icons/Logo.vue')['default']
+    Pets: typeof import('./components/Pets.vue')['default']
+    Registry: typeof import('./components/Pets.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Telegram: typeof import('./components/icons/Telegram.vue')['default']
+    Vk: typeof import('./components/icons/Vk.vue')['default']
+    Whatsapp: typeof import('./components/icons/Whatsapp.vue')['default']
   }
 }
