@@ -36,7 +36,7 @@ onMounted(async () => {
   // const pets:Pet = await (await petApi.pet.getPetById(10)).data
 
   petList.value = await (
-    await petApi.pet.findPetsByStatus({ status: ["available"] })
+    await petApi.pet.findPetsByStatus({ status: ["sold"] })
   ).data;
 });
 </script>

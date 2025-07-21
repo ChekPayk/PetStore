@@ -7,9 +7,16 @@
         </template>
 
         <v-app-bar-title>PetStore</v-app-bar-title>
+        <v-btn to="/">
+          Ищут дом
+        </v-btn>
+        <v-btn to="sold">
+          Выпускники
+        </v-btn>
       </v-app-bar>
       <router-view />
     </v-main>
+
     <v-footer class="d-flex flex-column app-footer" color="blue" rounded="lg">
       <div class="d-flex w-100 align-center px-4 py-2">
         <strong>Свяжись с нами в социальных сетях!</strong>

@@ -8,12 +8,15 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    copy: typeof import('./components/SoldPets.vue')['default']
     HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     Logo: typeof import('./components/icons/Logo.vue')['default']
     Pets: typeof import('./components/Pets.vue')['default']
     Registry: typeof import('./components/Pets.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Sold: typeof import('./components/SoldPets.vue')['default']
+    SoldPets: typeof import('./components/SoldPets.vue')['default']
     Telegram: typeof import('./components/icons/Telegram.vue')['default']
     Vk: typeof import('./components/icons/Vk.vue')['default']
     Whatsapp: typeof import('./components/icons/Whatsapp.vue')['default']
