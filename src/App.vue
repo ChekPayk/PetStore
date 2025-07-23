@@ -15,6 +15,11 @@
           Выпускники
         </v-btn>
 
+        <v-app-bar-actions>
+            <AddAnimal />
+
+        </v-app-bar-actions>
+
       </v-app-bar>
       <router-view />
     </v-main>
@@ -46,7 +51,11 @@ import Logo from "@/components/icons/Logo.vue";
 import Vk from "@/components/icons/Vk.vue";
 import Telegram from "@/components/icons/Telegram.vue";
 import Whatsapp from "@/components/icons/Whatsapp.vue";
+import AddAnimal from "@/components/AddAnimal.vue";
 const icons = [Vk, Telegram, Whatsapp];
+
+
+
 </script>
 
 <style lang="scss" scoped>
