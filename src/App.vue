@@ -7,12 +7,14 @@
         </template>
 
         <v-app-bar-title>PetStore</v-app-bar-title>
-        <v-btn to="/">
+
+        <v-btn to="/" class="button" active-class="active-btn">
           Ищут дом
         </v-btn>
-        <v-btn to="sold">
+        <v-btn to="sold" class="button" active-class="active-btn">
           Выпускники
         </v-btn>
+
       </v-app-bar>
       <router-view />
     </v-main>
@@ -47,8 +49,20 @@ import Whatsapp from "@/components/icons/Whatsapp.vue";
 const icons = [Vk, Telegram, Whatsapp];
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .app-footer {
   flex: none;
+}
+
+.button {
+  text-transform: capitalize;
+}
+
+// .button:deep(.v-btn:active) {
+//   background-color: aqua !important;;
+// }
+
+.active-btn {
+  background-color: aqua !important;
 }
 </style>

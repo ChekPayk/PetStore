@@ -1,12 +1,13 @@
 <template>
 
-<Pets>
-</Pets>
+
+<PetList status="available">
+</PetList>
 
 </template>
 
 <script lang="ts" setup>
-import Pets from '@/components/Pets.vue';
+import PetList from '@/components/PetList.vue';
 
   //
 </script>

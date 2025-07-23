@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="list-pets">
-      <div v-for="item in petList?.filter(pet => pet.name !== 'doggie')">
+      <div v-for="item in petList?.filter((pet) => pet.name !== 'doggie')">
         <v-card :title="item.name" class="card">
           <v-card-actions>
             <v-btn>Click me</v-btn>
@@ -28,16 +28,22 @@
 import type { Pet } from "@/Api.ts";
 import { Api } from "@/Api.ts";
 import { onMounted, ref } from "vue";
+
+interface Props {
+  status: "available" | "pending" | "sold";
+}
+
+const props = defineProps<Props>();
+
 const petApi = new Api();
 
 const petList = ref<Array<Pet>>();
 
 onMounted(async () => {
-  // const pets:Pet = await (await petApi.pet.getPetById(10)).data
-
-  petList.value = await (
-    await petApi.pet.findPetsByStatus({ status: ["sold"] })
-  ).data;
+  const response = await petApi.pet.findPetsByStatus({
+    status: [props.status],
+  });
+  petList.value = response.data;
 });
 </script>
 
