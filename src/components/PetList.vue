@@ -6,11 +6,16 @@
         </v-card>
       </div>
     </div>
-    <v-dialog v-model="dialog">
- 
-        <v-card :title="selectedPet?.name">
-
-        </v-card>
+    <v-dialog v-model="dialog" max-width="500">
+      <v-card :title="selectedPet?.name">
+        <v-card-text>
+          <div>Статус: {{ selectedPet?.status }}</div>
+          <div>Категория:  {{ selectedPet?.category?.name }}</div>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn text="Закрыть" @click="dialog = false"></v-btn>
+        </v-card-actions>
+      </v-card>
     </v-dialog>
 
     <!-- <v-list :items="doctorList" item-title="fio" variant="outlined"
@@ -47,9 +52,9 @@ const dialog = ref(false);
 
 const selectedPet = ref<Pet | null>(null);
 
-function openCard(petCard:Pet) {
-  selectedPet.value = petCard
-  dialog.value = true
+function openCard(petCard: Pet) {
+  selectedPet.value = petCard;
+  dialog.value = true;
 }
 
 onMounted(async () => {
