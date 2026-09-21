@@ -2,13 +2,17 @@
   <div>
     <div class="list-pets">
       <div v-for="item in petList?.filter((pet) => pet.name !== 'doggie')">
-        <v-card :title="item.name" class="card">
-          <v-card-actions>
-            <v-btn>Click me</v-btn>
-          </v-card-actions>
+        <v-card :title="item.name" class="card" @click="openCard(item)" hover>
         </v-card>
       </div>
     </div>
+    <v-dialog v-model="dialog">
+ 
+        <v-card :title="selectedPet?.name">
+
+        </v-card>
+    </v-dialog>
+
     <!-- <v-list :items="doctorList" item-title="fio" variant="outlined"
     >
 
@@ -38,6 +42,15 @@ const props = defineProps<Props>();
 const petApi = new Api();
 
 const petList = ref<Array<Pet>>();
+
+const dialog = ref(false);
+
+const selectedPet = ref<Pet | null>(null);
+
+function openCard(petCard:Pet) {
+  selectedPet.value = petCard
+  dialog.value = true
+}
 
 onMounted(async () => {
   const response = await petApi.pet.findPetsByStatus({
