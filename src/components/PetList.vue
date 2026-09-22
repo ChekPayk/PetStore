@@ -9,9 +9,17 @@
     <v-dialog v-model="dialog" max-width="500">
       <v-card :title="selectedPet?.name">
         <v-card-text>
-          <div>{{ selectedPet?.photoUrls }}</div>
-          <div>Статус: {{ statusLabels[selectedPet?.status ?? ''] }}</div>
-          <div>Категория:  {{ selectedPet?.category?.name ?? 'нет' }}</div>
+          <v-img
+            v-if="selectedPet?.photoUrls?.[0] && !photoError"
+            :src="selectedPet?.photoUrls?.[0]"
+            height="200"
+            contain
+            @error="photoError = true"
+            class="pet-photo"
+          ></v-img>
+
+          <div>Статус: {{ statusLabels[selectedPet?.status ?? ""] }}</div>
+          <div>Категория: {{ selectedPet?.category?.name ?? "нет" }}</div>
         </v-card-text>
         <v-card-actions>
           <v-btn text="Закрыть" @click="dialog = false"></v-btn>
@@ -44,9 +52,9 @@ interface Props {
 }
 
 const statusLabels: Record<string, string> = {
-  available: 'Доступен',
-  pending: 'Забронирован',
-  sold: 'Нашел дом',
+  available: "Доступен",
+  pending: "Забронирован",
+  sold: "Нашел дом",
 };
 
 const props = defineProps<Props>();
@@ -59,9 +67,12 @@ const dialog = ref(false);
 
 const selectedPet = ref<Pet | null>(null);
 
+const photoError = ref(false);
+
 function openCard(petCard: Pet) {
   selectedPet.value = petCard;
   dialog.value = true;
+  photoError.value = false;
 }
 
 onMounted(async () => {
@@ -84,4 +95,9 @@ onMounted(async () => {
   width: 140px;
   height: 150px;
 }
+
+.pet-photo :deep(img) {
+  object-position: left;
+}
+
 </style>
