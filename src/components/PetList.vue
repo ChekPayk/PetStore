@@ -9,17 +9,23 @@
     <v-dialog v-model="dialog" max-width="500">
       <v-card :title="selectedPet?.name">
         <v-card-text>
-          <v-img
-            v-if="selectedPet?.photoUrls?.[0] && !photoError"
-            :src="selectedPet?.photoUrls?.[0]"
-            height="200"
-            contain
-            @error="photoError = true"
-            class="pet-photo"
-          ></v-img>
-
-          <div>Статус: {{ statusLabels[selectedPet?.status ?? ""] }}</div>
-          <div>Категория: {{ selectedPet?.category?.name ?? "нет" }}</div>
+          <div :class="{ active: selectedPet?.photoUrls?.[0] && !photoError }">
+            <div>
+              <v-img
+                v-if="selectedPet?.photoUrls?.[0] && !photoError"
+                :src="selectedPet?.photoUrls?.[0]"
+                height="200"
+                width="200"
+                @error="photoError = true"
+                class="pet-photo"
+                cover
+              ></v-img>
+            </div>
+            <div>
+              <div>Статус: {{ statusLabels[selectedPet?.status ?? ""] }}</div>
+              <div>Категория: {{ selectedPet?.category?.name ?? "нет" }}</div>
+            </div>
+          </div>
         </v-card-text>
         <v-card-actions>
           <v-btn text="Закрыть" @click="dialog = false"></v-btn>
@@ -45,7 +51,7 @@
 // import {Pet} from "@/Api.ts"
 import type { Pet } from "@/Api.ts";
 import { Api } from "@/Api.ts";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed } from "vue";
 
 interface Props {
   status: "available" | "pending" | "sold";
@@ -100,4 +106,8 @@ onMounted(async () => {
   object-position: left;
 }
 
+.active {
+  display: flex;
+  gap: 12px;
+}
 </style>
