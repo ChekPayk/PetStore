@@ -9,8 +9,9 @@
     <v-dialog v-model="dialog" max-width="500">
       <v-card :title="selectedPet?.name">
         <v-card-text>
-          <div>Статус: {{ selectedPet?.status }}</div>
-          <div>Категория:  {{ selectedPet?.category?.name }}</div>
+          <div>{{ selectedPet?.photoUrls }}</div>
+          <div>Статус: {{ statusLabels[selectedPet?.status ?? ''] }}</div>
+          <div>Категория:  {{ selectedPet?.category?.name ?? 'нет' }}</div>
         </v-card-text>
         <v-card-actions>
           <v-btn text="Закрыть" @click="dialog = false"></v-btn>
@@ -41,6 +42,12 @@ import { onMounted, ref } from "vue";
 interface Props {
   status: "available" | "pending" | "sold";
 }
+
+const statusLabels: Record<string, string> = {
+  available: 'Доступен',
+  pending: 'Забронирован',
+  sold: 'Нашел дом',
+};
 
 const props = defineProps<Props>();
 
