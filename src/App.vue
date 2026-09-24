@@ -14,7 +14,7 @@
         <v-btn to="sold" class="button" active-class="active-btn">
           Выпускники
         </v-btn>
-
+        <v-text-field v-model="searchQuery" />
         <v-app-bar-actions>
             <AddAnimal />
 
@@ -52,6 +52,7 @@ import Vk from "@/components/icons/Vk.vue";
 import Telegram from "@/components/icons/Telegram.vue";
 import Whatsapp from "@/components/icons/Whatsapp.vue";
 import AddAnimal from "@/components/AddAnimal.vue";
+import { searchQuery } from "./composables/useSearch";
 const icons = [Vk, Telegram, Whatsapp];
 
 
