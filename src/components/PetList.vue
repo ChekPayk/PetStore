@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="list-pets">
-      <div v-for="item in petList?.filter((pet) => pet.name !== 'doggie')">
+      <div v-for="item in petList?.filter((pet) => pet.name !== 'doggie' && (pet.name ?? '').toLowerCase().includes(searchQuery.toLowerCase()))">
         <v-card :title="item.name" class="card" @click="openCard(item)" hover>
         </v-card>
       </div>
@@ -52,6 +52,7 @@
 import type { Pet } from "@/Api.ts";
 import { Api } from "@/Api.ts";
 import { onMounted, ref, computed } from "vue";
+import { searchQuery } from "@/composables/useSearch";
 
 interface Props {
   status: "available" | "pending" | "sold";
