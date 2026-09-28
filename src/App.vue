@@ -6,20 +6,28 @@
           <v-app-bar-nav-icon :icon="Logo"></v-app-bar-nav-icon>
         </template>
 
-        <v-app-bar-title>PetStore</v-app-bar-title>
-
+        <v-app-bar-title class="app-title">PetStore</v-app-bar-title>
+        <div class="search-container">
+          <v-text-field
+            class="search-field"
+            density="compact"
+            hide-details
+            variant="plain"
+            v-model="searchDraft"
+            append-inner-icon="mdi-magnify"
+            @click:append-inner="getSearch()"
+            @keyup.enter="getSearch()"
+          />
+        </div>
         <v-btn to="/" class="button" active-class="active-btn">
           Ищут дом
         </v-btn>
         <v-btn to="sold" class="button" active-class="active-btn">
           Выпускники
         </v-btn>
-        <v-text-field v-model="searchQuery" />
         <v-app-bar-actions>
-            <AddAnimal />
-
+          <AddAnimal />
         </v-app-bar-actions>
-
       </v-app-bar>
       <router-view />
     </v-main>
@@ -53,13 +61,22 @@ import Telegram from "@/components/icons/Telegram.vue";
 import Whatsapp from "@/components/icons/Whatsapp.vue";
 import AddAnimal from "@/components/AddAnimal.vue";
 import { searchQuery } from "./composables/useSearch";
+import { ref } from "vue";
 const icons = [Vk, Telegram, Whatsapp];
 
+const searchDraft = ref("");
 
-
+function getSearch() {
+  searchQuery.value = searchDraft.value;
+}
 </script>
 
 <style lang="scss" scoped>
+.app-title {
+  flex: none;
+  margin-right: 12px;
+}
+
 .app-footer {
   flex: none;
 }
@@ -74,5 +91,21 @@ const icons = [Vk, Telegram, Whatsapp];
 
 .active-btn {
   background-color: aqua !important;
+}
+
+.search-container {
+  display: flex;
+  flex-grow: 1;
+  justify-content: start;
+}
+
+.search-field {
+  max-width: 400px;
+  width: 100%;
+  padding: 8px 0;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  background: transparent;
 }
 </style>
